@@ -11,6 +11,8 @@ import Peer from "simple-peer"
 import io from "socket.io-client"
 import "./App.css"
 import alanBtn from "@alan-ai/alan-sdk-web";
+
+//Initializing socket.io, connecting with heroku deployed server file
 let socket = io(' https://lets-link-app.herokuapp.com/',{transports: ['websocket', 'polling', 'flashsocket']})
 
 
@@ -89,6 +91,8 @@ function App() {
  
     const answerCall =() =>  {
         setCallAccepted(true)
+        
+        //Creating peer connection
         const peer = new Peer({
             initiator: false,
             trickle: false,
@@ -104,13 +108,18 @@ function App() {
         peer.signal(callerSignal)
         connectionRef.current = peer
     }
- 
+    
+    //on leaving call destroying the connection
     const leaveCall = () => {
         setCallEnded(true)
         connectionRef.current.destroy()
     }
+    
+    //function for mic handling
     const handleMic =()=>{
-        setMic(!mic);
+        setMic(!mic);  
+        
+        //if mic is enabled and click is operated to mic disabled and vice-versa
         const enabled=stream.getAudioTracks()[0].enabled;
         if(enabled)
         stream.getAudioTracks()[0].enabled=false;
@@ -118,8 +127,12 @@ function App() {
         stream.getAudioTracks()[0].enabled= true;
         console.log(stream.getAudioTracks()[0]);
       }
+    
+    //function for video handling
       const handleVideo =()=>{
         setVid(!vid);
+          
+        //if video is enabled and click is operated to video disabled and vice-versa
         const enabled=stream.getVideoTracks()[0].enabled;
         if(enabled)
         stream.getVideoTracks()[0].enabled=false;
@@ -127,6 +140,8 @@ function App() {
         stream.getVideoTracks()[0].enabled= true;
         console.log(stream.getVideoTracks()[0]);
       }
+      
+    //Front-end web Designing
     return (
         <>
             <h1 style={{ textAlign: "center", color: '#865858', fontSize:'3rem' }}>Let's Link</h1>
@@ -149,6 +164,8 @@ function App() {
                     null}
                 </div>
             </div>
+
+            //Information side-bar
             <div className="myId">
                 <TextField
                     id="filled-basic"
@@ -184,6 +201,8 @@ function App() {
                     {idToCall}
                 </div>
             </div>
+
+            //if call is not accepted and call is received then display "Answer" else nothing
             <div>
                 {receivingCall && !callAccepted ? (
                         <div className="caller">
