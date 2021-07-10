@@ -1,0 +1,55 @@
+.container {
+	display: grid;
+	grid-template-columns: 6fr 3fr;
+}
+
+.myId {
+	margin-top: 3rem;
+	margin-right: 10rem;
+	border-radius: 5px;
+	background: #EBD4D4;
+	padding: 2rem;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+}
+
+.call-button {
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.video-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	align-content: center;
+	margin-top: 3rem;
+	margin-left: 10rem;
+}
+
+
+.caller {
+	text-align: center;
+	color: #865858;
+}
+
+body {
+	background:rgb(245, 241, 241);
+
+}
+video {
+	border-radius: 1rem;
+}
+h1 {
+	font-family: 'Roboto', sans-serif;
+	 color: #865858; 
+}
+.menu{
+	display: flex;
+	flex-direction: row;
+}
+.menu-icon{
+	display: flex;
+	margin: 1rem 2rem;
+}
